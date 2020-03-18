@@ -4,6 +4,10 @@ const server = express();
 
 const port = 4000;
 
+const data = require('./data');
+const song = data.list[0];
+console.log(`song: ${song.title} by ${song.artist}`);
+
 server.get("/", (req, res) => {
 	res.sendFile(__dirname + '/index.html');
 });
