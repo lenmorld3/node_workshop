@@ -4,7 +4,7 @@ const router = express.Router();
 // db setup
 const DbConnection = require('../../db');
 
-router.get("/users", async (req, res) => {
+router.get("/page/users", async (req, res) => {
 	const dbCollection = await DbConnection.getCollection("users");
 	const users = await dbCollection.find().toArray();
 	// res.json(products);
@@ -14,7 +14,7 @@ router.get("/users", async (req, res) => {
 	})
 });
 
-router.get("/users/new", async (req, res) => {
+router.get("/page/users/new", async (req, res) => {
 	res.render('users/new');
 });
 

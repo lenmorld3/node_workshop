@@ -16,31 +16,35 @@ server.set('view engine', 'ejs');
 // serve static assets like stylesheets and images
 server.use(express.static(__dirname + '/public'));
 
-// import routers
-const productsRouter = require('./routes/products');
-const usersRouter = require('./routes/users');
-const foodsRouter = require('./routes/foods');
+// import routers for API
+const productsRouter = require('./routes/api/products');
+const usersRouter = require('./routes/api/users');
+const foodsRouter = require('./routes/api/foods');
 
-// import controller for EJS views
-const usersController = require('./routes/pages/usersr
+// import routers for EJS views
+const homePages = require('./routes/pages/index');
+const usersPages = require('./routes/pages/users');
 
 const port = process.env.PORT;
 
 // ### HTML routes ###
-server.get("/", (req, res) => {
-	res.sendFile(__dirname + '/index.html');
-});
 
-server.get("/page/products", (req, res) => {
-	res.sendFile(__dirname + '/products.html');
-});
 
-server.get("/page/about", (req, res) => {
-	res.sendFile(__dirname + '/about.html');
-});
+// server.get("/", (req, res) => {
+// 	res.sendFile(__dirname + '/index.html');
+// });
+
+// server.get("/page/products", (req, res) => {
+// 	res.sendFile(__dirname + '/products.html');
+// });
+
+// server.get("/page/about", (req, res) => {
+// 	res.sendFile(__dirname + '/about.html');
+// });
 
 // ### EJS views ###
-server.use('/page', usersController);
+server.use('/', homePages);
+server.use('/', usersPages);
 
 
 // ### JSON routes ### 
