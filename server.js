@@ -10,10 +10,19 @@ const server = express();
 const body_parser = require('body-parser');
 server.use(body_parser.json()); // parse JSON (application/json content-type)
 
+// set the view engine to ejs
+server.set('view engine', 'ejs');
+
+// serve static assets like stylesheets and images
+server.use(express.static(__dirname + '/public'));
+
 // import routers
 const productsRouter = require('./routes/products');
 const usersRouter = require('./routes/users');
 const foodsRouter = require('./routes/foods');
+
+// import controller for EJS views
+const usersController = require('./routes/pages/usersr
 
 const port = process.env.PORT;
 
@@ -29,6 +38,10 @@ server.get("/page/products", (req, res) => {
 server.get("/page/about", (req, res) => {
 	res.sendFile(__dirname + '/about.html');
 });
+
+// ### EJS views ###
+server.use('/page', usersController);
+
 
 // ### JSON routes ### 
 server.get("/json", (req, res) => {
