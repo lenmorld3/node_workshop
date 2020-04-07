@@ -11,15 +11,27 @@
 	</nav>
 	<hr />
 	<main>
-		<ul>
+		<ul class="container">
 			<% users.forEach(function(user) { %>
-			<li>
-				user <%= user.id %>:
-				<ul>
-					<li><%= user.name %></li>
-					<li><%= user.email %></li>
-					<li><%= user.phone %></li>
-				</ul>
+			<li class="row">
+				<div class="col">
+					<div>
+						user <%= user.id %>:
+					</div>
+					<ul>
+						<li><%= user.name %></li>
+						<li><%= user.email %></li>
+						<li><%= user.phone %></li>
+					</ul>
+				</div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col">
+					<a href="./edit/<%= user.id %>" class="btn btn-info" role="button">Edit</a>
+					<form method="POST" action="/users/<%= user.id %>?_method=DELETE">
+						<button type="submit" class="btn btn-danger" role="button">Delete</button>
+					</form>
+				</div>
 			</li>
 			<% }); %>
 		</ul>
