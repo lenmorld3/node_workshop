@@ -1,4 +1,6 @@
 // === fetch non-authenticated resource ===
+// console.log("Fetching un-gated resource /foods")
+
 // fetch('http://localhost:4000/foods')
 // 	.then(response => {
 // 		console.log(response)
@@ -10,6 +12,7 @@
 // 	})
 
 // === fetch token-authenticated resource ===
+// console.log("Fetching gated resource /api/resource")
 
 // POST credentials to get token
 fetch('http://localhost:4000/api/token', {
