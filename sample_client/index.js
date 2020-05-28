@@ -12,7 +12,7 @@
 // 	})
 
 // === fetch token-authenticated resource ===
-// console.log("Fetching gated resource /api/resource")
+console.log("Fetching gated resource /api/resource")
 
 // POST credentials to get token
 fetch('http://localhost:4000/api/token', {
