@@ -1,4 +1,6 @@
 // === fetch non-authenticated resource ===
+console.log("Fetching un-gated resource /foods")
+
 fetch('http://localhost:4000/foods')
 	.then(response => {
 		console.log(response)
