@@ -13,4 +13,22 @@ router.get("/services/posts/:id", function (req, res) {
 		});
 });
 
+// routes/api1.js
+
+router.get("/services/jobs", function (req, res) {
+   const { description, location } = req.query;
+   let requestUrl = "https://jobs.github.com/positions.json";
+   if (description || location) {
+      const descriptionParam = description ? `description=${description}&` : '';
+      const locationParam = location ? `location=${location}&` : '';
+      requestUrl = `${requestUrl}?${descriptionParam}${locationParam}`;
+   }
+   console.log(`Request: ${requestUrl}`);
+   axios(requestUrl).then(result => {
+      res.json(result.data);
+   }).catch(err => {
+      throw err;
+   });
+});
+
 module.exports = router;
