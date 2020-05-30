@@ -53,7 +53,7 @@ router.get("/services/songs", (req, res) => {
 		// to prove we are verified API user
 
 		const _url = `https://api.spotify.com/v1/search?query=${search}&type=track`;
-		
+
 		axios({
 			method: 'GET',
 			url: _url,
@@ -61,13 +61,23 @@ router.get("/services/songs", (req, res) => {
 				"Authorization": `Bearer ${access_token}`,
 				"Accept": "application/json"
 			}
-		}).then( result => {
-			// inspect response data
+		}).then(result => {
+			// "clean" data so we only get the attributes we need
+			const search_results = result.data.tracks.items;
+			const squashed_results = search_results.map(track => {
+				return {
+					id: track.id,
+					artist: track.artists[0].name,
+					album: track.album.name,
+					title: track.name
+				};
+			});
 			console.log(">>>>>> search response <<<<<<<<")
-			console.log(JSON.stringify(result.data));
-			res.send(result.data.tracks.items);
+			console.log(squashed_results);
 			console.log(">>>> end of response <<<<<<")
-		}).catch( err => {
+			// res.send(_res.data.tracks.items);
+			res.json(squashed_results);
+		}).catch(err => {
 			console.log(`[SPOTIFY ERROR]: ${err}`);
 			throw err;
 		});
