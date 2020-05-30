@@ -1,3 +1,5 @@
+// Public APIs without auth needed
+
 const axios = require('axios');
 const express = require('express');
 const router = express.Router();
