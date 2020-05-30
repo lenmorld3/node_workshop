@@ -13,7 +13,6 @@ router.get("/services/posts/:id", function (req, res) {
 		});
 });
 
-// routes/api1.js
 
 router.get("/services/jobs", function (req, res) {
    const { description, location } = req.query;
